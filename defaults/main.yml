@@ -1,0 +1,6 @@
+---
+enhydris_aggregator: false
+use_enhydris_synoptic: false
+use_enhydris_autoprocess: false
+use_enhydris_openhigis: false
+enhydris_synoptic_station_link_target: "station/{station.id}/"
