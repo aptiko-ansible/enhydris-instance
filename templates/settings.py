@@ -63,9 +63,8 @@ SECRET_KEY = '{{ secret_key }}'
 
 # Options for django-registration
 ACCOUNT_ACTIVATION_DAYS = {{ account_activation_days }}
-ENHYDRIS_REGISTRATION_OPEN = {{ registration_open }}
-ACCOUNT_EMAIL_REQUIRED = ENHYDRIS_REGISTRATION_OPEN
-ACCOUNT_EMAIL_VERIFICATION = ENHYDRIS_REGISTRATION_OPEN and "mandatory" or "optional"
+REGISTRATION_OPEN = {{ registration_open }}
+
 EMAIL_BACKEND = "django_sendmail_backend.backends.EmailBackend"
 DEFAULT_FROM_EMAIL = '{{ default_from_email }}'
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
