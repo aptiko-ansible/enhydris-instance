@@ -81,7 +81,7 @@ ENHYDRIS_TSDATA_AVAILABLE_FOR_ANONYMOUS_USERS = {{ enhydris_tsdata_available_for
 ENHYDRIS_SITE_CONTENT_IS_FREE = {{ enhydris_site_content_is_free|default("False") }}
 {% endif %}
 ENHYDRIS_WGS84_NAME = '{{ enhydris_wgs84_name|default("WGS84") }}'
-ENHYDRIS_SITE_STATION_FILTER = {{ enhydris_site_station_filter|default("{}") }}
+ENHYDRIS_SITES_FOR_NEW_STATIONS = {{ enhydris_sites_for_new_stations|default("set()") }}
 ENHYDRIS_TS_GRAPH_CACHE_DIR = '/tmp/enhydris-timeseries-graphs-{{ enhydris_instance_name }}'
 
 # Custom template

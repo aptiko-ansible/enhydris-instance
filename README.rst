@@ -65,11 +65,11 @@ Variables
   to ``secret_key``. If specified, and ``dbname`` is different from
   ``enhydris_instance_name``, then it is assumed that this Enhydris
   instance will not have a database of its own, but instead it will use
-  the database of another instance. This can be useful in combination
-  with ``enhydris_site_station_filter``; for example,
+  the database of another instance.  For example,
   http://system.irrigation-management.eu/ uses the same database as
-  http://openmeteo.org/, but with a filter that makes it show only a
-  subset of the stations.
+  http://openmeteo.org/, using the `multi-site feature of Enhydris`_.
+
+  .. _multi-site feature of Enhydris: https://enhydris.readthedocs.io/en/latest/general/install.html#domains
 
 - ``default_from_email``: Django settings ``DEFAULT_FROM_EMAIL`` and
   ``SERVER_EMAIL``. Automatic emails sent from the server to the admins
@@ -86,8 +86,8 @@ Variables
   ``enhydris_users_can_add_content``: The equivalent Enhydris settings;
   the default for all these is False.
 
-- ``enhydris_site_station_filter``: Enhydris setting
-  ``ENHYDRIS_SITE_STATION_FILTER``; the default is no filter.
+- ``enhydris_sites_for_new_stations``: Enhydris setting
+  ``ENHYDRIS_SITES_FOR_NEW_STATIONS``; the default is an empty set.
 
 - ``enhydris_wgs84_name``: Enhydris setting ``ENHYDRIS_WGS84_NAME``; the
   default is "WGS84".
