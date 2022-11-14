@@ -114,12 +114,10 @@ ENHYDRIS_SYNOPTIC_ROOT = '/var/cache/enhydris/{{ enhydris_instance_name }}/synop
 ENHYDRIS_SYNOPTIC_URL = '/{{ site_base_url | default("") }}synoptic/'
 ENHYDRIS_SYNOPTIC_STATION_LINK_TARGET = '{{ enhydris_synoptic_station_link_target }}'
 from celery.schedules import crontab
-CELERY_BEAT_SCHEDULE = {
-    'do-synoptic': {
-        'task': 'enhydris_synoptic.tasks.create_static_files',
-        'schedule': crontab(minute='2-52/10'),
-        'options': {'queue': '{{ enhydris_instance_name }}'},
-    },
+CELERY_BEAT_SCHEDULE["do-synoptic"] = {
+    'task': 'enhydris_synoptic.tasks.create_static_files',
+    'schedule': crontab(minute='2-52/10'),
+    'options': {'queue': '{{ enhydris_instance_name }}'},
 }
 {%- endif %}
 
