@@ -52,9 +52,6 @@ MEDIA_ROOT = '{{ media_root | default("/var/opt/enhydris/" ~ enhydris_instance_n
 MEDIA_URL = '/{{ site_base_url | default("") }}media/'
 STATIC_ROOT = '/var/cache/enhydris/{{ enhydris_instance_name }}/static/'
 STATIC_URL = '/{{ site_base_url | default("") }}static/'
-STATICFILES_DIRS = [
-    '/etc/opt/enhydris/{{ enhydris_instance_name }}/static',
-]
 FILE_UPLOAD_PERMISSIONS = 0o644
 
 ROOT_URLCONF = 'urls'
