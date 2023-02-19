@@ -146,3 +146,7 @@ ENHYDRIS_AGGREGATOR = {
     ],
 }
 {%- endif %}
+
+{% if extra_settings|default(False) -%}
+{{ extra_settings }}
+{%- endif %}

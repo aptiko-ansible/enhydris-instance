@@ -32,6 +32,9 @@ installation).  Use ``enhydris-instance`` like this::
     session_cookie_secure: False
     gunicorn_port: 8001
     use_enhydris_synoptic: True
+    extra_settings: |
+        MY_SETTING1 = "hello"
+        MY_SETTING2 = "world"
 
 Variables
 =========
@@ -143,6 +146,9 @@ Variables
   ``ENHYDRIS_MAP_BASE_LAYERS`` setting. They must contain JavaScript. They may
   not contain triple string characters.
 
+- ``extra_settings``: A string that is appended to the Enhydris (Django)
+  settings as is.
+
 Meta
 ====
 
@@ -151,6 +157,7 @@ Written by Antonis Christofides
 | Copyright (C) 2015-2019 National Technical University of Athens
 | Copyright (C) 2011-2016 Antonis Christofides
 | Copyright (C) 2014 TEI of Epirus
+| Copyright (C) 2023 IRMASYS
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
