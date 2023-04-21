@@ -72,7 +72,8 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 ENHYDRIS_USERS_CAN_ADD_CONTENT = {{ enhydris_users_can_add_content|default("False") }}
 {% if enhydris_version >= '3' %}
-ENHYDRIS_OPEN_CONTENT = {{ enhydris_open_content|default("False") }}
+ENHYDRIS_DEFAULT_PUBLICLY_AVAILABLE = {{ enhydris_default_publicly_available | default("False") }}
+ENHYDRIS_ENABLE_TIMESERIES_DATA_VIEWERS = {{ enhydris_enable_timeseries_data_viewers|default("False") }}
 {% else %}
 ENHYDRIS_TSDATA_AVAILABLE_FOR_ANONYMOUS_USERS = {{ enhydris_tsdata_available_for_anonymous_users|default("False") }}
 ENHYDRIS_SITE_CONTENT_IS_FREE = {{ enhydris_site_content_is_free|default("False") }}

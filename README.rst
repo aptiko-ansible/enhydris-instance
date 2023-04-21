@@ -26,9 +26,9 @@ installation).  Use ``enhydris-instance`` like this::
     email_port: 25
     email_host: localhost
     default_from_email: noreply@openmeteo.org
+    enhydris_default_publicly_available: True
+    enhydris_enable_timeseries_data_viewers: False
     enhydris_users_can_add_content: True
-    enhydris_site_content_is_free: True
-    enhydris_tsdata_available_for_anonymous_users: True
     session_cookie_secure: False
     gunicorn_port: 8001
     use_enhydris_synoptic: True
@@ -84,8 +84,8 @@ Variables
   automatic emails. ``email_host_user`` and ``email_host_password`` are
   optional; if not specified, no smtp authentication is used.
 
-- ``enhydris_site_content_is_free``,
-  ``enhydris_tsdata_available_for_anonymous_users``,
+- ``enhydris_default_publicly_available``,
+  ``enhydris_enable_timeseries_data_viewers``,
   ``enhydris_users_can_add_content``: The equivalent Enhydris settings;
   the default for all these is False.
 
