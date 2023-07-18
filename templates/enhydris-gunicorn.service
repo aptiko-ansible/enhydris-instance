@@ -10,7 +10,7 @@ Environment="DJANGO_SETTINGS_MODULE=settings"
 ExecStart=/opt/enhydris-{{ enhydris_instance_name }}/venv/bin/gunicorn \
     {% if enhydris_version < '2.2' %}enhydris.{% endif %}wsgi:application \
     --workers=4 --log-level=warning --bind=127.0.0.1:{{ gunicorn_port }} \
-    --timeout=60 \
+    --timeout=160 \
     --log-file=/var/log/enhydris/{{ enhydris_instance_name }}/gunicorn.log
 
 [Install]
