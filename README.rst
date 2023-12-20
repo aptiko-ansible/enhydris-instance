@@ -69,8 +69,12 @@ Variables
   ``enhydris_instance_name``, then it is assumed that this Enhydris
   instance will not have a database of its own, but instead it will use
   the database of another instance.  For example,
-  http://system.irrigation-management.eu/ uses the same database as
-  http://openmeteo.org/, using the `multi-site feature of Enhydris`_.
+  https://system.openhi.net/ uses the same database as
+  https://openmeteo.org/, using the `multi-site feature of Enhydris`_.
+
+  If ``dbname`` is different from ``enhydris_instance_name``, then,
+  additionally, celery and celery beat are not configured, because it is
+  assumed that they run for the other instance.
 
   .. _multi-site feature of Enhydris: https://enhydris.readthedocs.io/en/latest/general/install.html#domains
 

@@ -280,9 +280,9 @@
     db: "{{ dbname|default(enhydris_instance_name) }}"
   become: true
   become_user: postgres
-  when: >
-    dbname|default(enhydris_instance_name) == enhydris_instance_name and
-    dbhost|default("localhost") == "localhost"
+  when:
+    - dbname|default(enhydris_instance_name) == enhydris_instance_name
+    - dbhost|default("localhost") == "localhost"
 
 - name: Check whether db is synced
   shell: >
@@ -310,10 +310,10 @@
     sudo -u postgres psql {{ dbname|default(enhydris_instance_name) }} )
   args:
     chdir: "/opt/enhydris-{{ enhydris_instance_name }}"
-  when: >
-    check_db_not_synced.rc == 0 and
-    dbname|default(enhydris_instance_name) == enhydris_instance_name and
-    dbhost|default("localhost") == "localhost"
+  when:
+    - check_db_not_synced.rc == 0
+    - dbname|default(enhydris_instance_name) == enhydris_instance_name
+    - dbhost|default("localhost") == "localhost"
 
 - name: Setup apache for enhydris {{ enhydris_instance_name }}
   template:
@@ -376,13 +376,17 @@
 
 - name: Install RabbitMQ (needed for Celery of Enhydris)
   apt: name=rabbitmq-server
-  when: "use_enhydris_synoptic|default(False) or use_enhydris_autoprocess|default(False)"
+  when:
+    - dbname|default(enhydris_instance_name) == enhydris_instance_name
+    - use_enhydris_synoptic|default(False) or use_enhydris_autoprocess|default(False)
 
 - name: Create enhydris-{{ enhydris_instance_name }}-celery service
   template:
     src: enhydris-celery.service
     dest: /etc/systemd/system/enhydris-{{ enhydris_instance_name }}-celery.service
-  when: "(use_enhydris_autoprocess or use_enhydris_synoptic)"
+  when:
+    - dbname|default(enhydris_instance_name) == enhydris_instance_name
+    - use_enhydris_autoprocess or use_enhydris_synoptic
 
 - name: Enable enhydris-{{ enhydris_instance_name }}-celery service
   systemd:
@@ -390,13 +394,17 @@
     enabled: yes
     state: started
     daemon-reload: yes
-  when: "(use_enhydris_autoprocess or use_enhydris_synoptic)"
+  when:
+    - dbname|default(enhydris_instance_name) == enhydris_instance_name
+    - use_enhydris_autoprocess or use_enhydris_synoptic
 
 - name: Create enhydris-{{ enhydris_instance_name }}-synoptic-celerybeat service
   template:
     src: enhydris-synoptic-celerybeat.service
     dest: /etc/systemd/system/enhydris-{{ enhydris_instance_name }}-synoptic-celerybeat.service
-  when: "use_enhydris_synoptic|default(False)"
+  when:
+    - dbname|default(enhydris_instance_name) == enhydris_instance_name
+    - use_enhydris_synoptic
 
 - name: Enable enhydris-{{ enhydris_instance_name }}-synoptic-celerybeat service
   systemd:
@@ -404,4 +412,6 @@
     enabled: yes
     state: started
     daemon-reload: yes
-  when: "use_enhydris_synoptic|default(False)"
+  when:
+    - dbname|default(enhydris_instance_name) == enhydris_instance_name
+    - use_enhydris_synoptic
