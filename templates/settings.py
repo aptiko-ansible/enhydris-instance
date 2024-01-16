@@ -70,10 +70,11 @@ SERVER_EMAIL = DEFAULT_FROM_EMAIL
 # It should be removed if the inline object become different views.
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
-ENHYDRIS_USERS_CAN_ADD_CONTENT = {{ enhydris_users_can_add_content|default("False") }}
+ENHYDRIS_USERS_CAN_ADD_CONTENT = {{ enhydris_users_can_add_content }}
 {% if enhydris_version >= '3' %}
-ENHYDRIS_DEFAULT_PUBLICLY_AVAILABLE = {{ enhydris_default_publicly_available | default("False") }}
-ENHYDRIS_ENABLE_TIMESERIES_DATA_VIEWERS = {{ enhydris_enable_timeseries_data_viewers|default("False") }}
+ENHYDRIS_REQUIRE_AUTHENTICATION = {{ enhydris_require_authentication }}
+ENHYDRIS_DEFAULT_PUBLICLY_AVAILABLE = {{ enhydris_default_publicly_available }}
+ENHYDRIS_ENABLE_TIMESERIES_DATA_VIEWERS = {{ enhydris_enable_timeseries_data_viewers }}
 {% else %}
 ENHYDRIS_TSDATA_AVAILABLE_FOR_ANONYMOUS_USERS = {{ enhydris_tsdata_available_for_anonymous_users|default("False") }}
 ENHYDRIS_SITE_CONTENT_IS_FREE = {{ enhydris_site_content_is_free|default("False") }}

@@ -88,7 +88,8 @@ Variables
   automatic emails. ``email_host_user`` and ``email_host_password`` are
   optional; if not specified, no smtp authentication is used.
 
-- ``enhydris_default_publicly_available``,
+- ``enhydris_require_authentication``,
+  ``enhydris_default_publicly_available``,
   ``enhydris_enable_timeseries_data_viewers``,
   ``enhydris_users_can_add_content``: The equivalent Enhydris settings;
   the default for all these is False.
