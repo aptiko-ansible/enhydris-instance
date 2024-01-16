@@ -4,7 +4,7 @@ use_enhydris_synoptic: false
 use_enhydris_autoprocess: false
 use_enhydris_openhigis: false
 
-enhydris_require_authentication: false
+enhydris_authentication_required: false
 enhydris_users_can_add_content: false
 enhydris_default_publicly_available: false
 enhydris_enable_timeseries_data_viewers: false

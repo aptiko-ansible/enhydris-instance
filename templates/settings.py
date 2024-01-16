@@ -72,7 +72,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 ENHYDRIS_USERS_CAN_ADD_CONTENT = {{ enhydris_users_can_add_content }}
 {% if enhydris_version >= '3' %}
-ENHYDRIS_REQUIRE_AUTHENTICATION = {{ enhydris_require_authentication }}
+ENHYDRIS_AUTHENTICATION_REQUIRED = {{ enhydris_authentication_required }}
 ENHYDRIS_DEFAULT_PUBLICLY_AVAILABLE = {{ enhydris_default_publicly_available }}
 ENHYDRIS_ENABLE_TIMESERIES_DATA_VIEWERS = {{ enhydris_enable_timeseries_data_viewers }}
 {% else %}
