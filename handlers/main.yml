@@ -29,3 +29,8 @@
   shell: >
     systemctl daemon-reload &&
     service enhydris-{{ enhydris_instance_name }}-* restart
+
+- name: "Restart rabbitmq-server"
+  service:
+    name: rabbitmq-server
+    state: restarted

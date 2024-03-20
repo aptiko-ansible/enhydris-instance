@@ -378,7 +378,6 @@
   apt: name=rabbitmq-server
   when:
     - dbname|default(enhydris_instance_name) == enhydris_instance_name
-    - use_enhydris_synoptic|default(False) or use_enhydris_autoprocess|default(False)
 
 - name: Create enhydris-{{ enhydris_instance_name }}-celery service
   template:
@@ -386,7 +385,6 @@
     dest: /etc/systemd/system/enhydris-{{ enhydris_instance_name }}-celery.service
   when:
     - dbname|default(enhydris_instance_name) == enhydris_instance_name
-    - use_enhydris_autoprocess or use_enhydris_synoptic
 
 - name: Enable enhydris-{{ enhydris_instance_name }}-celery service
   systemd:
@@ -396,7 +394,6 @@
     daemon-reload: yes
   when:
     - dbname|default(enhydris_instance_name) == enhydris_instance_name
-    - use_enhydris_autoprocess or use_enhydris_synoptic
 
 - name: Create enhydris-{{ enhydris_instance_name }}-synoptic-celerybeat service
   template:
@@ -415,3 +412,30 @@
   when:
     - dbname|default(enhydris_instance_name) == enhydris_instance_name
     - use_enhydris_synoptic
+
+- name: Install rabbitmq prometheus plugin
+  community.rabbitmq.rabbitmq_plugin:
+    names: rabbitmq_prometheus
+    state: enabled
+  when:
+    - dbname|default(enhydris_instance_name) == enhydris_instance_name
+    - prometheus_server_ips|default(False)
+
+- name: Ensure rabbitmq.conf exists
+  copy:
+    dest: /etc/rabbitmq/rabbitmq.conf
+    content: ""
+    force: no
+  when:
+    - dbname|default(enhydris_instance_name) == enhydris_instance_name
+    - prometheus_server_ips|default(False)
+
+- name: Ensure rabbitmq prometheus plugin is listening on all interfaces
+  lineinfile:
+    path: /etc/rabbitmq/rabbitmq.conf
+    regexp: '^prometheus.tcp.ip\s*='
+    line: "prometheus.tcp.ip = ::"
+  when:
+    - dbname|default(enhydris_instance_name) == enhydris_instance_name
+    - prometheus_server_ips|default(False)
+  notify: Restart rabbitmq-server
