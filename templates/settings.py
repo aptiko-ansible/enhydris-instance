@@ -105,6 +105,7 @@ FORCE_SCRIPT_NAME = '/{{ site_base_url }}'
 {%- endif %}
 
 CELERY_TASK_DEFAULT_QUEUE = "{{ enhydris_instance_name }}"
+CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 
 {% if use_enhydris_synoptic|default(False) -%}
 # Enhydris-synoptic
