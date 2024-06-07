@@ -395,23 +395,21 @@
   when:
     - dbname|default(enhydris_instance_name) == enhydris_instance_name
 
-- name: Create enhydris-{{ enhydris_instance_name }}-synoptic-celerybeat service
+- name: Create enhydris-{{ enhydris_instance_name }}-celerybeat service
   template:
-    src: enhydris-synoptic-celerybeat.service
-    dest: /etc/systemd/system/enhydris-{{ enhydris_instance_name }}-synoptic-celerybeat.service
+    src: enhydris-celerybeat.service
+    dest: /etc/systemd/system/enhydris-{{ enhydris_instance_name }}-celerybeat.service
   when:
     - dbname|default(enhydris_instance_name) == enhydris_instance_name
-    - use_enhydris_synoptic
 
-- name: Enable enhydris-{{ enhydris_instance_name }}-synoptic-celerybeat service
+- name: Enable enhydris-{{ enhydris_instance_name }}-celerybeat service
   systemd:
-    name: enhydris-{{ enhydris_instance_name }}-synoptic-celerybeat
+    name: enhydris-{{ enhydris_instance_name }}-celerybeat
     enabled: yes
     state: started
     daemon-reload: yes
   when:
     - dbname|default(enhydris_instance_name) == enhydris_instance_name
-    - use_enhydris_synoptic
 
 - name: Install rabbitmq prometheus plugin
   community.rabbitmq.rabbitmq_plugin:
