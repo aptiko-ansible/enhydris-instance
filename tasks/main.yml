@@ -199,6 +199,17 @@
     owner: "{{ enhydris_instance_name }}"
   when: dbname|default(enhydris_instance_name) == enhydris_instance_name
 
+- name: Create mapserver configuration file
+  copy:
+    src: mapserver.conf
+    dest: /etc/mapserver.conf
+    mode: 0644
+  when: "use_enhydris_openhigis|default(False)"
+
+- name: Create mapserver log dir (for enhydris)
+  file: state=directory name=/var/log/mapserver owner=www-data group=www-data
+  when: "use_enhydris_openhigis|default(False)"
+
 - name: Create enhydris {{ enhydris_instance_name }} configuration directory
   file: dest=/etc/opt/enhydris/{{ enhydris_instance_name }} state=directory
 
@@ -351,7 +362,7 @@
 - name: Install gunicorn for {{ enhydris_instance_name }}
   pip:
     name: gunicorn
-    version: 19.7.1
+    version: 23.0.0
     virtualenv: "/opt/enhydris-{{ enhydris_instance_name }}/venv"
     virtualenv_site_packages: yes
     virtualenv_python: python3
