@@ -9,7 +9,7 @@ Environment="PYTHONPATH=/etc/opt/enhydris/{{ enhydris_instance_name }}"
 Environment="DJANGO_SETTINGS_MODULE=settings"
 ExecStart=/opt/enhydris-{{ enhydris_instance_name }}/venv/bin/celery \
     --app=enhydris.celery:app worker --hostname="{{ enhydris_instance_name }}@%%h" \
-    --queues={{ enhydris_instance_name }} --loglevel=info --concurrency=1 \
+    --queues={{ enhydris_instance_name }} --loglevel=info --concurrency={{ enhydris_instance_celery_concurrency }} \
     --logfile=/var/log/enhydris/{{ enhydris_instance_name }}/celery.log
 
 [Install]

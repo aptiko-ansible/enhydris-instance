@@ -154,15 +154,18 @@ Variables
 - ``extra_settings``: A string that is appended to the Enhydris (Django)
   settings as is.
 
+- ``enhydris_instance_celery_concurrency``: The number of celery workers;
+  default 1.
+
 Meta
 ====
 
 Written by Antonis Christofides
 
+| Copyright (C) 2023-2024 IRMASYS
 | Copyright (C) 2015-2019 National Technical University of Athens
 | Copyright (C) 2011-2016 Antonis Christofides
 | Copyright (C) 2014 TEI of Epirus
-| Copyright (C) 2023 IRMASYS
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

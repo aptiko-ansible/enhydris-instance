@@ -10,3 +10,4 @@ enhydris_default_publicly_available: false
 enhydris_enable_timeseries_data_viewers: false
 
 enhydris_synoptic_station_link_target: "station/{station.id}/"
+enhydris_instance_celery_concurrency: 1
