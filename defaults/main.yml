@@ -1,7 +1,5 @@
 ---
 enhydris_aggregator: false
-use_enhydris_synoptic: false
-use_enhydris_autoprocess: false
 use_enhydris_openhigis: false
 
 enhydris_authentication_required: false

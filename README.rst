@@ -31,7 +31,6 @@ installation).  Use ``enhydris-instance`` like this::
     enhydris_users_can_add_content: True
     session_cookie_secure: False
     gunicorn_port: 8001
-    use_enhydris_synoptic: True
     extra_settings: |
         MY_SETTING1 = "hello"
         MY_SETTING2 = "world"
@@ -129,17 +128,8 @@ Variables
 - ``use_enhydris_stats``: (Deprecated.) If True, the ``enhydris_stats``
   will be configured for use. Default False.
 
-- ``use_enhydris_synoptic``: If True, the ``enhydris_synoptic`` app
-  will be configured for use. Default False.
-
-- ``enhydris_synoptic_version``: If ``use_enhydris_synoptic`` is True, this
-  specifies the version. The default is master.
-
-- ``enhydris_synoptic_station_link_target``: The equivalent setting of
-  ``enhydris_synoptic``.
-
-- ``use_enhydris_autoprocess``: If True, the ``enhydris_autoprocess``
-  app will be configured for use. Default False.
+- ``enhydris_synoptic_station_link_target``: The equivalent Enhydris
+  setting.
 
 - ``use_enhydris_openhigis``: If True, the ``enhydris_openhigis`` app
   will be configured for use. Default False.
@@ -162,7 +152,7 @@ Meta
 
 Written by Antonis Christofides
 
-| Copyright (C) 2023-2024 IRMASYS
+| Copyright (C) 2023-2025 IRMASYS
 | Copyright (C) 2015-2019 National Technical University of Athens
 | Copyright (C) 2011-2016 Antonis Christofides
 | Copyright (C) 2014 TEI of Epirus

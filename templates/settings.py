@@ -106,24 +106,9 @@ FORCE_SCRIPT_NAME = '/{{ site_base_url }}'
 
 CELERY_TASK_DEFAULT_QUEUE = "{{ enhydris_instance_name }}"
 
-{% if use_enhydris_synoptic|default(False) -%}
-# Enhydris-synoptic
-INSTALLED_APPS.append('enhydris_synoptic')
 ENHYDRIS_SYNOPTIC_ROOT = '/var/cache/enhydris/{{ enhydris_instance_name }}/synoptic/'
 ENHYDRIS_SYNOPTIC_URL = '/{{ site_base_url | default("") }}synoptic/'
 ENHYDRIS_SYNOPTIC_STATION_LINK_TARGET = '{{ enhydris_synoptic_station_link_target }}'
-from celery.schedules import crontab
-CELERY_BEAT_SCHEDULE["do-synoptic"] = {
-    'task': 'enhydris_synoptic.tasks.create_static_files',
-    'schedule': crontab(minute='2-52/10'),
-    'options': {'queue': '{{ enhydris_instance_name }}'},
-}
-{%- endif %}
-
-{% if use_enhydris_autoprocess|default(False) -%}
-# Enhydris-autoprocess
-INSTALLED_APPS.append('enhydris_autoprocess')
-{%- endif %}
 
 {% if use_enhydris_openhigis|default(False) -%}
 # Enhydris-openhigis

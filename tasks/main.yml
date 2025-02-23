@@ -55,52 +55,6 @@
     virtualenv_site_packages: yes
   when: enhydris_aggregator|bool
 
-- name: Install Enhydris synoptic for {{ enhydris_instance_name }}
-  git:
-    repo: https://github.com/openmeteo/enhydris-synoptic.git
-    dest: "/opt/enhydris-{{ enhydris_instance_name }}/enhydris-synoptic"
-    version: "{{ enhydris_synoptic_version|default('master') }}"
-  notify:
-  - Recompile Enhydris {{ enhydris_instance_name }}
-  when: "use_enhydris_synoptic|default(False)"
-
-- name: Link Enhydris synoptic for {{ enhydris_instance_name }}
-  file:
-    state: link
-    path: /opt/enhydris-{{ enhydris_instance_name }}/enhydris_synoptic
-    src: /opt/enhydris-{{ enhydris_instance_name }}/enhydris-synoptic/enhydris_synoptic
-  when: "use_enhydris_synoptic|default(False)"
-
-- name: Install Enhydris synoptic requirements for {{ enhydris_instance_name }}
-  pip:
-    requirements: "/opt/enhydris-{{ enhydris_instance_name }}/enhydris-synoptic/requirements.txt"
-    virtualenv: "/opt/enhydris-{{ enhydris_instance_name }}/venv"
-    virtualenv_site_packages: yes
-  when: "use_enhydris_synoptic|default(False)"
-
-- name: Install Enhydris autoprocess for {{ enhydris_instance_name }}
-  git:
-    repo: https://github.com/openmeteo/enhydris-autoprocess.git
-    dest: "/opt/enhydris-{{ enhydris_instance_name }}/enhydris-autoprocess"
-    version: "{{ enhydris_autoprocess_version|default('master') }}"
-  notify:
-  - Recompile Enhydris {{ enhydris_instance_name }}
-  when: "use_enhydris_autoprocess|default(False)"
-
-- name: Link Enhydris autoprocess for {{ enhydris_instance_name }}
-  file:
-    state: link
-    path: /opt/enhydris-{{ enhydris_instance_name }}/enhydris_autoprocess
-    src: /opt/enhydris-{{ enhydris_instance_name }}/enhydris-autoprocess/enhydris_autoprocess
-  when: "use_enhydris_autoprocess|default(False)"
-
-- name: Install Enhydris autoprocess requirements for {{ enhydris_instance_name }}
-  pip:
-    requirements: "/opt/enhydris-{{ enhydris_instance_name }}/enhydris-autoprocess/requirements.txt"
-    virtualenv: "/opt/enhydris-{{ enhydris_instance_name }}/venv"
-    virtualenv_site_packages: yes
-  when: "use_enhydris_autoprocess|default(False)"
-
 - name: Install Enhydris openhigis for {{ enhydris_instance_name }}
   git:
     repo: https://github.com/openmeteo/enhydris-openhigis.git
@@ -283,7 +237,6 @@
     state: directory
     owner: "{{ dbname|default(enhydris_instance_name) }}"
     group: "{{ dbname|default(enhydris_instance_name) }}"
-  when: "use_enhydris_synoptic|default(False)"
 
 - name: Create PostgreSQL unaccent extension
   postgresql_ext:
