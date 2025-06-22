@@ -104,7 +104,7 @@ SESSION_COOKIE_SECURE = {{ session_cookie_secure | default("True") }}
 FORCE_SCRIPT_NAME = '/{{ site_base_url }}'
 {%- endif %}
 
-CELERY_TASK_DEFAULT_QUEUE = "{{ dbname|default(enhydris_instance_name) }}",
+CELERY_TASK_DEFAULT_QUEUE = "{{ dbname|default(enhydris_instance_name) }}"
 
 ENHYDRIS_SYNOPTIC_ROOT = '/var/cache/enhydris/{{ enhydris_instance_name }}/synoptic/'
 ENHYDRIS_SYNOPTIC_URL = '/{{ site_base_url | default("") }}synoptic/'
